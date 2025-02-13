@@ -1,0 +1,37 @@
+# Sensitive credentials
+**/secrets/
+**/*.env
+**/configs/credentials*
+**/alertmanager/config.yml
+**/prometheus/azure.yml
+
+# Docker and container artifacts
+**/data/
+**/docker-compose.override.yml
+**/grafana/data/  # Grafana database
+**/prometheus/data/  # Prometheus data
+
+# Environment files
+.env
+.env.local
+
+# IDE specific files
+.vscode/
+.idea/
+
+# System files
+.bash_history
+.cache/
+.wget-hsts
+.sudo_as_admin_successful
+
+# Logs and temp files
+*.log
+logs/
+*.tmp
+*.swp
+*~
+
+# Grafana specific
+grafana/plugins/
+grafana/grafana.db
