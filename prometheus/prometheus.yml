@@ -9,4 +9,4 @@ scrape_configs:
   - job_name: 'azure-app-service'
     metrics_path: '/metrics'
     static_configs:
-      - targets: ['YOUR_APP_S.azurewebsites.net']
+      - targets: ['YOUR_APP_Service.azurewebsites.net']
