@@ -1,0 +1,21 @@
+group:
+  - name: azure_app_service
+    rules:
+      - alert: HighResponseTime
+        expr: azure_app_service_http_response_time > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High response time detected"
+          description: "The response time for Azure App Service is above 5 seconds for the last 5 minutes."
+
+      - alert: HighErrorRate
+        expr: rate(azure_app_service_http_5xx[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: critical
+        
+        annotations:
+          summary: "High error rate detected"
+          description: "The error rate for Azure App Service is above 10% for the last 2 minutes."
