@@ -52,7 +52,7 @@ services:
     image: webdevops/azure-metrics-exporter:latest
     container_name: azure-exporter
     ports:
-      - "9276:8080"
+      - "9276:8080" 
     environment:
       - AZURE_SUBSCRIPTION_ID=your-subscription-id
       - AZURE_TENANT_ID=your-tenant-id
