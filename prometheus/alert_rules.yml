@@ -1,4 +1,4 @@
-group:
+groups:
   - name: azure_app_service
     rules:
       - alert: HighResponseTime
