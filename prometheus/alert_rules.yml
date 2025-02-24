@@ -19,3 +19,12 @@ groups:
         annotations:
           summary: "High error rate detected"
           description: "The error rate for Azure App Service is above 10% for the last 2 minutes."
+      
+      - alert: SiteDown
+        expr: probe_success{job="azure-app-service-http"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Website is DOWN"
+          description: "Your Azure App Service at {{ $labels.instance }} has been unreachable for more than 1 minute."
