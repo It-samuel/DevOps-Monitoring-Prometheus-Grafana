@@ -1,21 +1,23 @@
 global:
   smtp_smarthost: '${SMTP_HOST}:${SMTP_PORT}'
   smtp_from: '${SMTP_FROM}'
+  smtp_auth_username: '${SMTP_USERNAME}'
+  smtp_auth_password: '${SMTP_PASSWORD}'
+  smtp_require_tls: true
 
 route:
-  group_by: ['alertname']
-  group_wait: 10s
-  group_interval: 10s
-  repeat_interval: 1h
-  receiver: 'web.hook'
+  receiver: 'email-alerts'
 
 receivers:
-- name: 'web.hook'
+- name: 'email-alerts'
   email_configs:
   - to: '${ALERT_EMAIL_TO}'
-    subject: 'Alert: {{ .GroupLabels.alertname }}'
+    subject: '🚨 SITE DOWN: {{ .GroupLabels.alertname }}'
     body: |
-      {{ range .Alerts }}
-      Alert: {{ .Annotations.summary }}
-      Description: {{ .Annotations.description }}
-      {{ end }}
+      ALERT: Your website is DOWN!
+      
+      Site: {{ range .Alerts }}{{ .Labels.instance }}{{ end }}
+      Status: {{ range .Alerts }}{{ .Status }}{{ end }}
+      Time: {{ range .Alerts }}{{ .StartsAt }}{{ end }}
+      
+      Please check your website immediately.
