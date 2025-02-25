@@ -31,3 +31,22 @@ scrape_configs:
     static_configs:
       - targets: 
         - lexicon-server-eddeced3fzf3czaw.canadaeast-01.azurewebsites.net # Upadeted target endpoint
+
+  - job_name: 'blackbox'
+    static_configs:
+      - targets: ['blackbox-exporter:9115']
+
+  - job_name: 'azure-app-service-http'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - https://lexicon-server-eddeced3fzf3czaw.canadaeast-01.azurewebsites.net
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
