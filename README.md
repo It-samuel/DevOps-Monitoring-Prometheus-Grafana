@@ -10,3 +10,13 @@ A complete monitoring solution for Azure App Services using Prometheus, Grafana,
 - **Blackbox Exporter**: Uptime and endpoint monitoring
 - **Node Exporter**: Infrastructure metrics
 - **Azure Monitor Exporter**: Azure-specific metrics
+
+## 🚀 Features
+
+- ✅ Website uptime monitoring
+- ✅ SSL certificate expiry alerts
+- ✅ Response time tracking
+- ✅ Azure App Service metrics
+- ✅ Email and Slack notifications
+- ✅ Custom dashboards
+- ✅ Infrastructure monitoring
